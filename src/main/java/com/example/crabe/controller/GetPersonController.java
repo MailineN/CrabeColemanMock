@@ -1,5 +1,8 @@
-package com.example.crabe;
+package com.example.crabe.controller;
 
+import com.example.crabe.beans.Person;
+import com.example.crabe.exceptions.PersonNotFoundException;
+import com.example.crabe.repository.PersonRepository;
 import org.springframework.hateoas.CollectionModel;
 import org.springframework.hateoas.EntityModel;
 import org.springframework.hateoas.IanaLinkRelations;
@@ -44,5 +47,6 @@ public class PersonController {
                 .created(entityModel.getRequiredLink(IanaLinkRelations.SELF).toUri()) //
                 .body(entityModel);
     }
+
 
 }
