@@ -31,7 +31,7 @@ public class GetPersonController {
 
     @GetMapping("/persons/{id}")
     Person one(@PathVariable Long id){
-        return repository.findById(String.valueOf(id))
+        return repository.findById(id)
                 .orElseThrow(() -> new NotFoundException("personne",id));
     }
 

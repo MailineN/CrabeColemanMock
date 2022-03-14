@@ -16,8 +16,7 @@ public class LoaderExample {
     @Bean
     CommandLineRunner initDatabase(PersonRepository repository) {
         return args -> {
-            log.info("Preloading " + repository.save(new Person("Mi", "Mi","abc@abc.com", "0102030405")));
-            log.info("Preloading " + repository.save(new Person("Mo", "Mo","abc@abc.com","0102030405")));
+            log.info("PRELOADING : DONE" );
         };
     }
 }

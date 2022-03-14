@@ -50,7 +50,6 @@ public class SurveyController {
         LOGGER.info("Post request, add a survey");
         return surveyService.save(newSurvey);
 
-
     }
 
     @GetMapping(value = "/surveys/{idsurvey}", produces = "application/json")
@@ -66,11 +65,13 @@ public class SurveyController {
     }
 
     @PostMapping("/surveys/{idsurvey}/units")
-    public void addToSurvey(@RequestBody List<Person> units, @PathVariable Long idsurvey){
+    public void addToSurvey(@RequestBody List<Person> units, @PathVariable String idsurvey){
         LOGGER.info("POST request to add unit to survey {}", idsurvey);
+        Long idLongSurvey = Long.parseLong(idsurvey);
         try {
-            surveyService.findById(idsurvey);
-            personService.addToSurvey(idsurvey, units);
+            surveyService.findById(idLongSurvey);
+            LOGGER.info("Enquête trouvée");
+            personService.addToSurvey(idLongSurvey, units);
 
         } catch (NotFoundException e) {
             LOGGER.error("Error in request: campaign not found {}", idsurvey);
