@@ -19,9 +19,9 @@ public class PersonService {
     @Autowired
     SurveyRepository surveyRepository;
     
-    public void addToSurvey(String idsurvey, List<Person> units) {
+    public void addToSurvey(Long idsurvey, List<Person> units) {
         // check and retrieval of the survey
-        Survey survey = surveyRepository.findById(idsurvey)
+        Survey survey = surveyRepository.findById(String.valueOf(idsurvey))
                 .orElseThrow(() -> new NotFoundException("survey", idsurvey));
 
         for (Person unit : units) {
@@ -34,7 +34,7 @@ public class PersonService {
 
     }
 
-    public void addToSurveyIndiv(String idsurvey, Person unit){
+    public void addToSurveyIndiv(Long idsurvey, Person unit){
         // On va considérer ici qu'une personne participe à une enquete à la fois
         if (unit.getIdSurvey() != null){
             throw new DuplicateException("unit in survey", unit.getIdSurvey());

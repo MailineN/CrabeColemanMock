@@ -3,16 +3,19 @@ import java.util.Objects;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
 public class Person {
-    private @Id @GeneratedValue String id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
     private String nom;
     private String prenom;
     private String email;
     private String telephone;
-    private String idSurvey;
+    private Long idSurvey;
     public Person() {
 
     }
@@ -23,7 +26,7 @@ public class Person {
         this.telephone = telephone;
     }
 
-    public String getId() {
+    public Long getId() {
         return id;
     }
 
@@ -43,11 +46,11 @@ public class Person {
         this.prenom = prenom;
     }
 
-    public String getIdSurvey() {
+    public Long getIdSurvey() {
         return idSurvey;
     }
 
-    public void setIdSurvey(String idSurvey) {
+    public void setIdSurvey(Long idSurvey) {
         this.idSurvey = idSurvey;
     }
 

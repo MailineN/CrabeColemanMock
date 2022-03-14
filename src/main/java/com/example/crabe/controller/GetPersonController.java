@@ -19,7 +19,7 @@ import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
 public class GetPersonController {
     private final PersonRepository repository;
     //private final GetPersonModelAssembler assembler;
-    GetPersonController(PersonRepository repository, GetPersonModelAssembler assembler){
+    GetPersonController(PersonRepository repository){
 
         this.repository = repository;
         // this.assembler = assembler;
@@ -30,8 +30,8 @@ public class GetPersonController {
     }
 
     @GetMapping("/persons/{id}")
-    Person one(@PathVariable String id){
-        return repository.findById(id)
+    Person one(@PathVariable Long id){
+        return repository.findById(String.valueOf(id))
                 .orElseThrow(() -> new NotFoundException("personne",id));
     }
 

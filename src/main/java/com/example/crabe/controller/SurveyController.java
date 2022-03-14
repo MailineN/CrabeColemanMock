@@ -35,7 +35,7 @@ public class SurveyController {
     // private final SurveyAssembler assembler;
     static final Logger LOGGER = LoggerFactory.getLogger(SurveyController.class);
 
-    public SurveyController(SurveyRepository repository, SurveyAssembler assembler) {
+    public SurveyController(SurveyRepository repository) {
         this.repository = repository;
         // this.assembler = assembler;
     }
@@ -54,7 +54,7 @@ public class SurveyController {
     }
 
     @GetMapping(value = "/surveys/{idsurvey}", produces = "application/json")
-    public Survey displayAsurvey(@PathVariable String idsurvey) throws NotFoundException {
+    public Survey displayAsurvey(@PathVariable Long idsurvey) throws NotFoundException {
         LOGGER.info("Request GET with survey id : {}", idsurvey);
         return surveyService.findById(idsurvey);
     }
@@ -66,7 +66,7 @@ public class SurveyController {
     }
 
     @PostMapping("/surveys/{idsurvey}/units")
-    public void addToSurvey(@RequestBody List<Person> units, @PathVariable String idsurvey){
+    public void addToSurvey(@RequestBody List<Person> units, @PathVariable Long idsurvey){
         LOGGER.info("POST request to add unit to survey {}", idsurvey);
         try {
             surveyService.findById(idsurvey);

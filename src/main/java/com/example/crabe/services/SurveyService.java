@@ -16,16 +16,16 @@ public class SurveyService {
     SurveyRepository surveyRepository;
 
     public Survey save(Survey newSurvey){
-        String id = newSurvey.getId();
-        if (!surveyRepository.existsById(id)){
+        Long id = newSurvey.getId();
+        if (!surveyRepository.existsById(String.valueOf(id))){
             return surveyRepository.save(newSurvey);
         } else {
             throw new DuplicateException("Survey",id);
         }
     }
 
-    public Survey findById(String idSurvey) throws NotFoundException {
-        return surveyRepository.findById(idSurvey)
+    public Survey findById(Long idSurvey) throws NotFoundException {
+        return surveyRepository.findById(String.valueOf(idSurvey))
                 .orElseThrow(() -> new NotFoundException("survey ", idSurvey));
     }
 }
