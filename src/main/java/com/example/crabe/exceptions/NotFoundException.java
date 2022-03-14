@@ -1,8 +1,8 @@
 package com.example.crabe.exceptions;
 
-public class PersonNotFoundException extends RuntimeException {
-    public PersonNotFoundException(Long id) {
-            super("La personne " + id + " n'existe pas");
-        }
+public class NotFoundException extends RuntimeException {
+    public NotFoundException(String ressource, String id) {
+        super(String.format("'%s' already exists for values : '%s'", ressource, id));
     }
+}
 

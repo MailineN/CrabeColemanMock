@@ -1,5 +1,4 @@
-package com.example.crabe;
-import java.awt.*;
+package com.example.crabe.beans;
 import java.util.Objects;
 
 import javax.persistence.Entity;
@@ -8,11 +7,12 @@ import javax.persistence.Id;
 
 @Entity
 public class Person {
-    private @Id @GeneratedValue Long id;
+    private @Id @GeneratedValue String id;
     private String nom;
     private String prenom;
     private String email;
     private String telephone;
+    private String idSurvey;
     public Person() {
 
     }
@@ -23,7 +23,7 @@ public class Person {
         this.telephone = telephone;
     }
 
-    public Long getId() {
+    public String getId() {
         return id;
     }
 
@@ -41,6 +41,14 @@ public class Person {
 
     public void setPrenom(String prenom) {
         this.prenom = prenom;
+    }
+
+    public String getIdSurvey() {
+        return idSurvey;
+    }
+
+    public void setIdSurvey(String idSurvey) {
+        this.idSurvey = idSurvey;
     }
 
     public String getEmail() {

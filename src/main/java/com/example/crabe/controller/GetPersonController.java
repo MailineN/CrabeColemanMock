@@ -1,7 +1,7 @@
 package com.example.crabe.controller;
 
 import com.example.crabe.beans.Person;
-import com.example.crabe.exceptions.PersonNotFoundException;
+import com.example.crabe.exceptions.NotFoundException;
 import com.example.crabe.repository.PersonRepository;
 import org.springframework.hateoas.CollectionModel;
 import org.springframework.hateoas.EntityModel;
@@ -16,36 +16,28 @@ import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
 
 @RestController
-public class PersonController {
+public class GetPersonController {
     private final PersonRepository repository;
-    private final PersonModelAssembler assembler;
-    PersonController(PersonRepository repository, PersonModelAssembler assembler){
+    //private final GetPersonModelAssembler assembler;
+    GetPersonController(PersonRepository repository, GetPersonModelAssembler assembler){
 
         this.repository = repository;
-        this.assembler = assembler;
+        // this.assembler = assembler;
     }
     @GetMapping("/persons")
-    CollectionModel<EntityModel<Person>> all() {
-
-        List<EntityModel<Person>> persons = repository.findAll().stream() //
-                .map(assembler::toModel) //
-                .collect(Collectors.toList());
-
-        return CollectionModel.of(persons, linkTo(methodOn(PersonController.class).all()).withSelfRel());
+    List<Person> all() {
+        return repository.findAll();
     }
 
     @GetMapping("/persons/{id}")
-    Person one(@PathVariable Long id){
+    Person one(@PathVariable String id){
         return repository.findById(id)
-                .orElseThrow(() -> new PersonNotFoundException(id));
+                .orElseThrow(() -> new NotFoundException("personne",id));
     }
 
     @PostMapping("/persons")
-    ResponseEntity<?> newPerson(@RequestBody Person person){
-        EntityModel<Person> entityModel= assembler.toModel(repository.save(person));
-        return ResponseEntity //
-                .created(entityModel.getRequiredLink(IanaLinkRelations.SELF).toUri()) //
-                .body(entityModel);
+    Person newPerson(@RequestBody Person person){
+        return repository.save(person);
     }
 
 
