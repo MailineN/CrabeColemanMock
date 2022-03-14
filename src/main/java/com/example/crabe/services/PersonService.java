@@ -13,6 +13,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 @Service
@@ -52,4 +54,13 @@ public class PersonService {
             unit = personRepository.save(unit);
         }
     }
+
+    public List<Person> sample(Long sampleSize){
+        long len = personRepository.count();
+        List<Person> liste = personRepository.findAll();
+        List<Person> copy = new ArrayList<Person>(liste);
+        Collections.shuffle(copy);
+        return sampleSize > copy.size() ? copy.subList(0, copy.size()) : copy.subList(0, Math.toIntExact(sampleSize));
+    }
 }
+

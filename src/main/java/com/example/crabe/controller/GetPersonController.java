@@ -3,6 +3,8 @@ package com.example.crabe.controller;
 import com.example.crabe.beans.Person;
 import com.example.crabe.exceptions.NotFoundException;
 import com.example.crabe.repository.PersonRepository;
+import com.example.crabe.services.PersonService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.hateoas.CollectionModel;
 import org.springframework.hateoas.EntityModel;
 import org.springframework.hateoas.IanaLinkRelations;
@@ -17,6 +19,9 @@ import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
 
 @RestController
 public class GetPersonController {
+    @Autowired
+    PersonService personService;
+
     private final PersonRepository repository;
     //private final GetPersonModelAssembler assembler;
     GetPersonController(PersonRepository repository){
@@ -40,5 +45,9 @@ public class GetPersonController {
         return repository.save(person);
     }
 
+    @GetMapping("/persons/sample/{sampleSize}")
+    List<Person> sample(@PathVariable Long sampleSize){
+        return personService.sample(sampleSize);
+    }
 
 }
