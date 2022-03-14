@@ -4,23 +4,18 @@ import com.example.crabe.beans.Person;
 import com.example.crabe.beans.Survey;
 import com.example.crabe.exceptions.DuplicateException;
 import com.example.crabe.exceptions.NotFoundException;
+import com.example.crabe.repository.PersonRepository;
 import com.example.crabe.repository.SurveyRepository;
 import com.example.crabe.services.PersonService;
 import com.example.crabe.services.SurveyService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.hateoas.CollectionModel;
-import org.springframework.hateoas.EntityModel;
-import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
-import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
 
 @RestController
 public class SurveyController {
@@ -32,12 +27,14 @@ public class SurveyController {
     PersonService personService;
 
     private final SurveyRepository repository;
+    private final PersonRepository personRepository;
     // private final SurveyAssembler assembler;
     static final Logger LOGGER = LoggerFactory.getLogger(SurveyController.class);
 
-    public SurveyController(SurveyRepository repository) {
+    public SurveyController(SurveyRepository repository, PersonRepository personRepository) {
         this.repository = repository;
         // this.assembler = assembler;
+        this.personRepository = personRepository;
     }
 
     @GetMapping("/surveys")
@@ -59,9 +56,9 @@ public class SurveyController {
     }
 
     @GetMapping("/surveys/{idsurvey}/units")
-    public List<Person> allUnits(){
+    public List<Person> allUnits(@PathVariable String idsurvey){
         // est ce que c'est vraiment utile ?
-        return new ArrayList<>();
+        return personRepository.findByIdSurvey(Long.parseLong(idsurvey));
     }
 
     @PostMapping("/surveys/{idsurvey}/units")

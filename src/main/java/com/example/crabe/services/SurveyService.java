@@ -16,13 +16,13 @@ public class SurveyService {
     SurveyRepository surveyRepository;
 
     public Survey save(Survey newSurvey){
-
         return surveyRepository.save(newSurvey);
-
     }
 
     public Survey findById(Long idSurvey) throws NotFoundException {
         return surveyRepository.findById(idSurvey)
                 .orElseThrow(() -> new NotFoundException("survey ", idSurvey));
     }
+
+
 }
