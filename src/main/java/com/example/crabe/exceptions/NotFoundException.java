@@ -1,4 +1,4 @@
-package com.example.crabe;
+package com.example.crabe.exceptions;
 
 public class PersonNotFoundException extends RuntimeException {
     public PersonNotFoundException(Long id) {
