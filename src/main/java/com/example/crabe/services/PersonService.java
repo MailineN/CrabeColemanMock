@@ -2,8 +2,6 @@ package com.example.crabe.services;
 
 import com.example.crabe.beans.Person;
 import com.example.crabe.beans.Survey;
-import com.example.crabe.controller.GetPersonController;
-import com.example.crabe.controller.SurveyController;
 import com.example.crabe.exceptions.DuplicateException;
 import com.example.crabe.exceptions.NotFoundException;
 import com.example.crabe.repository.PersonRepository;
@@ -29,29 +27,32 @@ public class PersonService {
     @Autowired
     PersonRepository personRepository;
     
-    public void addToSurvey(Long idsurvey, List<Person> units) {
+    public List<Person> addToSurvey(Long idsurvey, List<Person> units) {
         // check and retrieval of the survey
         Survey survey = surveyRepository.findById(idsurvey)
                 .orElseThrow(() -> new NotFoundException("survey", idsurvey));
         LOGGER.info(survey.toString());
+        List<Person> unitAdded = new ArrayList<Person>();
         for (Person unit : units) {
             try {
-                addToSurveyIndiv(idsurvey,unit);
+                Person unitAdd = addToSurveyIndiv(idsurvey,unit);
+                unitAdded.add(unitAdd);
                 LOGGER.info("Unit : " + unit.toString());
             } catch (DuplicateException e){
                 e.getMessage();
             }
         }
+        return unitAdded;
 
     }
 
-    public void addToSurveyIndiv(Long idsurvey, Person unit){
+    public Person addToSurveyIndiv(Long idsurvey, Person unit){
         // On va considérer ici qu'une personne participe à une enquete à la fois
         if (unit.getIdSurvey() != null){
             throw new DuplicateException("unit in survey", unit.getIdSurvey());
         } else {
             unit.setIdSurvey(idsurvey);
-            unit = personRepository.save(unit);
+            return unit;
         }
     }
 

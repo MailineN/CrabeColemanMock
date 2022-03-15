@@ -68,8 +68,8 @@ public class SurveyController {
         try {
             surveyService.findById(idLongSurvey);
             LOGGER.info("Enquête trouvée");
-            personService.addToSurvey(idLongSurvey, units);
-
+            List<Person> list = personService.addToSurvey(idLongSurvey, units);
+            personRepository.saveAll(list);
         } catch (NotFoundException e) {
             LOGGER.error("Error in request: campaign not found {}", idsurvey);
         } catch (DuplicateException e){
