@@ -5,6 +5,8 @@ import com.example.crabe.exceptions.NotFoundException;
 import com.example.crabe.repository.PersonRepository;
 import com.example.crabe.services.PersonService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -24,8 +26,9 @@ public class PersonController {
         // this.assembler = assembler;
     }
     @GetMapping("/persons")
-    List<Person> all() {
-        return repository.findAll();
+    ResponseEntity<List<Person>> all() {
+
+        return ResponseEntity.ok(repository.findAll());
     }
 
     @GetMapping("/persons/{id}")
@@ -35,13 +38,15 @@ public class PersonController {
     }
 
     @PostMapping("/persons")
-    Person newPerson(@RequestBody Person person){
-        return repository.save(person);
+    ResponseEntity<Person> newPerson(@RequestBody Person person){
+
+        return new ResponseEntity<Person>(repository.save(person),HttpStatus.CREATED);
     }
 
     @GetMapping(value = "/persons/sample/{sampleSize}", produces = "application/json")
-    List<Person> sample(@PathVariable Long sampleSize){
-        return personService.sample(sampleSize);
+    ResponseEntity<List<Person>> sample(@PathVariable Long sampleSize){
+
+        return ResponseEntity.ok(personService.sample(sampleSize));
     }
 
 }
