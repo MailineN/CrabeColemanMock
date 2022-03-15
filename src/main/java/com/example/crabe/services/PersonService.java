@@ -19,7 +19,7 @@ import java.util.List;
 
 @Service
 public class PersonService {
-    static final Logger LOGGER = LoggerFactory.getLogger(SurveyController.class);
+    static final Logger LOGGER = LoggerFactory.getLogger(PersonService.class);
     @Autowired
     SurveyService surveyService;
 

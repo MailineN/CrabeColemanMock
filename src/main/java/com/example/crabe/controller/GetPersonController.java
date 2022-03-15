@@ -45,7 +45,7 @@ public class GetPersonController {
         return repository.save(person);
     }
 
-    @GetMapping("/persons/sample/{sampleSize}")
+    @GetMapping(value = "/persons/sample/{sampleSize}", produces = "application/json")
     List<Person> sample(@PathVariable Long sampleSize){
         return personService.sample(sampleSize);
     }
