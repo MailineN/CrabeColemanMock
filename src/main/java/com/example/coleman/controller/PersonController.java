@@ -1,9 +1,9 @@
-package com.example.crabe.controller;
+package com.example.coleman.controller;
 
-import com.example.crabe.beans.Person;
-import com.example.crabe.exceptions.NotFoundException;
-import com.example.crabe.repository.PersonRepository;
-import com.example.crabe.services.PersonService;
+import com.example.coleman.beans.Person;
+import com.example.coleman.exceptions.NotFoundException;
+import com.example.coleman.repository.PersonRepository;
+import com.example.coleman.services.PersonService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

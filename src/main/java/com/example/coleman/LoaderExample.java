@@ -1,7 +1,6 @@
-package com.example.crabe;
+package com.example.coleman;
 
-import com.example.crabe.beans.Person;
-import com.example.crabe.repository.PersonRepository;
+import com.example.coleman.repository.PersonRepository;
 import org.springframework.context.annotation.Configuration;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

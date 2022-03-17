@@ -1,4 +1,4 @@
-package com.example.crabe.exceptions;
+package com.example.coleman.exceptions;
 
 public class NotFoundException extends RuntimeException {
     public NotFoundException(String ressource, Long id) {

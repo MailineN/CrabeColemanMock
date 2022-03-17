@@ -1,4 +1,4 @@
-package com.example.crabe.beans;
+package com.example.coleman.beans;
 import java.util.Objects;
 
 import javax.persistence.Entity;

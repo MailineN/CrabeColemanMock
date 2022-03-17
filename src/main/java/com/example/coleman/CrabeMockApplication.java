@@ -1,4 +1,4 @@
-package com.example.crabe;
+package com.example.coleman;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

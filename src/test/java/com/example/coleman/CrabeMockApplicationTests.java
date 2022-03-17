@@ -1,4 +1,4 @@
-package com.example.crabe;
+package com.example.coleman;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

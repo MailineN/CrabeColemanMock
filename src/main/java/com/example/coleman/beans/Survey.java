@@ -1,4 +1,4 @@
-package com.example.crabe.beans;
+package com.example.coleman.beans;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;

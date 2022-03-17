@@ -1,7 +1,6 @@
-package com.example.crabe.repository;
-import com.example.crabe.beans.Person;
+package com.example.coleman.repository;
+import com.example.coleman.beans.Person;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.Query;
 
 import java.util.List;
 

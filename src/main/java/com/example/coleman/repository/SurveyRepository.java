@@ -1,7 +1,6 @@
-package com.example.crabe.repository;
+package com.example.coleman.repository;
 
-import com.example.crabe.beans.Person;
-import com.example.crabe.beans.Survey;
+import com.example.coleman.beans.Survey;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface SurveyRepository extends JpaRepository<Survey,Long> {

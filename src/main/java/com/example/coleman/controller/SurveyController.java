@@ -1,13 +1,13 @@
-package com.example.crabe.controller;
+package com.example.coleman.controller;
 
-import com.example.crabe.beans.Person;
-import com.example.crabe.beans.Survey;
-import com.example.crabe.exceptions.DuplicateException;
-import com.example.crabe.exceptions.NotFoundException;
-import com.example.crabe.repository.PersonRepository;
-import com.example.crabe.repository.SurveyRepository;
-import com.example.crabe.services.PersonService;
-import com.example.crabe.services.SurveyService;
+import com.example.coleman.beans.Person;
+import com.example.coleman.beans.Survey;
+import com.example.coleman.exceptions.DuplicateException;
+import com.example.coleman.exceptions.NotFoundException;
+import com.example.coleman.repository.PersonRepository;
+import com.example.coleman.repository.SurveyRepository;
+import com.example.coleman.services.PersonService;
+import com.example.coleman.services.SurveyService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;

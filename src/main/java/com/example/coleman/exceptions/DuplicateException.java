@@ -1,4 +1,4 @@
-package com.example.crabe.exceptions;
+package com.example.coleman.exceptions;
 
 public class DuplicateException extends RuntimeException{
     public DuplicateException(String ressource, Long id) {

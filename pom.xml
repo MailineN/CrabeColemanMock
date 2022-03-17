@@ -15,7 +15,7 @@
 	<description>Demo project for Spring Boot</description>
 	<properties>
 		<java.version>17</java.version>
-		<start-class>com.example.crabe.CrabeMockApplication</start-class>
+		<start-class>com.example.coleman.CrabeMockApplication</start-class>
 	</properties>
 	<dependencies>
 		<dependency>

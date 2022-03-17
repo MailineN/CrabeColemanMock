@@ -1,4 +1,4 @@
-package com.example.crabe.exceptions;
+package com.example.coleman.exceptions;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -7,11 +7,11 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
 @ControllerAdvice
-public class DuplicateAdvice {
+public class NotFoundAdvice {
     @ResponseBody
     @ExceptionHandler(NotFoundException.class)
     @ResponseStatus(HttpStatus.NOT_FOUND)
-    String DuplicateHandler(DuplicateException e){
+    String NotFoundHandler(NotFoundException e){
         return e.getMessage();
     }
 
