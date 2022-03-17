@@ -56,12 +56,5 @@ public class PersonService {
         }
     }
 
-    public List<Person> sample(Long sampleSize){
-        long len = personRepository.count();
-        List<Person> liste = personRepository.findAll();
-        List<Person> copy = new ArrayList<Person>(liste);
-        Collections.shuffle(copy);
-        return sampleSize > copy.size() ? copy.subList(0, copy.size()) : copy.subList(0, Math.toIntExact(sampleSize));
-    }
 }
 

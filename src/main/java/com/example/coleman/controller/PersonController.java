@@ -43,10 +43,5 @@ public class PersonController {
         return new ResponseEntity<Person>(repository.save(person),HttpStatus.CREATED);
     }
 
-    @GetMapping(value = "/persons/sample/{sampleSize}", produces = "application/json")
-    ResponseEntity<List<Person>> sample(@PathVariable Long sampleSize){
-
-        return ResponseEntity.ok(personService.sample(sampleSize));
-    }
 
 }
