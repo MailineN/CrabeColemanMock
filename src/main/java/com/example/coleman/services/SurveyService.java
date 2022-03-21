@@ -23,5 +23,14 @@ public class SurveyService {
                 .orElseThrow(() -> new NotFoundException("survey ", idSurvey));
     }
 
+    public Survey findByName(String surveyName) throws NotFoundException{
+        try{
+            Survey survey = surveyRepository.findByName(surveyName);
+            return survey;
+        } catch (Exception e){
+            throw new NotFoundException("survey");
+        }
+    }
+
 
 }

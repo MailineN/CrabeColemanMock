@@ -1,0 +1,17 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: coleman
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: coleman
+  template:
+    metadata:
+      labels:
+        app: coleman
+    spec:
+      containers:
+        - name: coleman
+          image: mailinenguyen/coleman

@@ -51,10 +51,16 @@ public class SurveyController {
 
     }
 
-    @GetMapping(value = "/surveys/{idsurvey}", produces = "application/json")
+    @GetMapping(value = "/surveys/id/{idsurvey}", produces = "application/json")
     public ResponseEntity<Survey> displayAsurvey(@PathVariable Long idsurvey) throws NotFoundException {
         LOGGER.info("Request GET with survey id : {}", idsurvey);
         return ResponseEntity.ok(surveyService.findById(idsurvey));
+    }
+
+    @GetMapping(value = "/surveys/name/{name}", produces = "application/json")
+    public ResponseEntity<Survey> displaySurveyName(@PathVariable String name) throws NotFoundException {
+        LOGGER.info("Request GET with survey name : {}", name);
+        return ResponseEntity.ok(surveyService.findByName(name));
     }
 
     @GetMapping("/surveys/{idsurvey}/units")
