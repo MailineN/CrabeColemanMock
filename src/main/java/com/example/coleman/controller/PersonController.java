@@ -37,7 +37,7 @@ public class PersonController {
                 .orElseThrow(() -> new NotFoundException("personne",id));
     }
 
-    @PostMapping("/persons")
+    @PostMapping(value = "/persons",consumes = "application/json")
     ResponseEntity<Person> newPerson(@RequestBody Person person){
 
         return new ResponseEntity<Person>(repository.save(person),HttpStatus.CREATED);

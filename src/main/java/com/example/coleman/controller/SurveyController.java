@@ -44,7 +44,7 @@ public class SurveyController {
         return ResponseEntity.ok(repository.findAll());
     }
 
-    @PostMapping("/surveys")
+    @PostMapping(value = "/surveys", consumes = "application/json")
     public ResponseEntity<Survey> addSurvey(@RequestBody Survey newSurvey){
         LOGGER.info("Post request, add a survey");
         return new ResponseEntity<Survey>(surveyService.save(newSurvey), HttpStatus.CREATED);
@@ -69,7 +69,7 @@ public class SurveyController {
         return ResponseEntity.ok(personRepository.findByIdSurvey(Long.parseLong(idsurvey)));
     }
 
-    @PostMapping("/surveys/{idsurvey}/units")
+    @PostMapping(value = "/surveys/{idsurvey}/units", consumes = "application/json")
     public ResponseEntity addToSurvey(@RequestBody List<Person> units, @PathVariable String idsurvey){
         LOGGER.info("POST request to add unit to survey {}", idsurvey);
         Long idLongSurvey = Long.parseLong(idsurvey);
