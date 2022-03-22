@@ -92,4 +92,8 @@ public class Person {
                 ", telephone='" + telephone + '\'' +
                 '}';
     }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
 }

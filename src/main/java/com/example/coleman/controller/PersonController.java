@@ -43,5 +43,19 @@ public class PersonController {
         return new ResponseEntity<Person>(repository.save(person),HttpStatus.CREATED);
     }
 
+    @PutMapping(value="/person/{id}", consumes = "application/json")
+    ResponseEntity updatePerson(@RequestBody Person newPerson, @PathVariable Long id){
+        repository.findById(id)
+                .map(person -> {
+                    person.setIdSurvey(newPerson.getIdSurvey());
+                    return repository.save(person);
+                })
+                .orElseGet(() -> {
+                    newPerson.setId(id);
+                    return repository.save(newPerson);
+                });
+        return new ResponseEntity(HttpStatus.OK);
+    }
+
 
 }
