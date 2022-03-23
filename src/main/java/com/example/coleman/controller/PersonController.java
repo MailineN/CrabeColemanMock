@@ -4,6 +4,8 @@ import com.example.coleman.beans.Person;
 import com.example.coleman.exceptions.NotFoundException;
 import com.example.coleman.repository.PersonRepository;
 import com.example.coleman.services.PersonService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -17,7 +19,7 @@ import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
 public class PersonController {
     @Autowired
     PersonService personService;
-
+    static final Logger LOGGER = LoggerFactory.getLogger(SurveyController.class);
     private final PersonRepository repository;
     //private final GetPersonModelAssembler assembler;
     PersonController(PersonRepository repository){
@@ -43,17 +45,12 @@ public class PersonController {
         return new ResponseEntity<Person>(repository.save(person),HttpStatus.CREATED);
     }
 
-    @PutMapping(value="/person/{id}", consumes = "application/json")
+    @PatchMapping(value="/persons/{id}", consumes = "application/json")
     ResponseEntity updatePerson(@RequestBody Person newPerson, @PathVariable Long id){
-        repository.findById(id)
-                .map(person -> {
-                    person.setIdSurvey(newPerson.getIdSurvey());
-                    return repository.save(person);
-                })
-                .orElseGet(() -> {
-                    newPerson.setId(id);
-                    return repository.save(newPerson);
-                });
+        Person toUpdatePerson = repository.getById(id);
+        toUpdatePerson.setIdSurvey(newPerson.getIdSurvey());
+        LOGGER.info("Update survey ID "+ newPerson.getIdSurvey());
+        repository.save(toUpdatePerson);
         return new ResponseEntity(HttpStatus.OK);
     }
 
