@@ -28,10 +28,10 @@ jobs:
         env:
           DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
           DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
-
-      - name: Build & push Docker image
-        uses: mr-smithers-excellent/docker-build-push@v5
-        with:
-          image: mailinenguyen/coleman
-          tags: latest
+      - name: Build Docker image
+        run:  docker build --no-cache -t coleman . --platform linux/amd64
+      - name : Tag Docker image
+        run: docker tag coleman mailinenguyen/coleman
+      - name: Publish Docker image
+        run: docker push mailinenguyen/coleman
 
