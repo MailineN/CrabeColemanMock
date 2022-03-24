@@ -15,7 +15,7 @@ public class Person {
     private String prenom;
     private String email;
     private String telephone;
-    private Long idSurvey;
+    private Long id_survey;
     public Person() {
 
     }
@@ -47,11 +47,11 @@ public class Person {
     }
 
     public Long getIdSurvey() {
-        return idSurvey;
+        return id_survey;
     }
 
-    public void setIdSurvey(Long idSurvey) {
-        this.idSurvey = idSurvey;
+    public void setIdSurvey(Long id_survey) {
+        this.id_survey = id_survey;
     }
 
     public String getEmail() {
