@@ -15,13 +15,13 @@ spec:
       containers:
         - name: coleman
           image: mailinenguyen/coleman
-        - env:
+          env:
             - name: SPRING_DATASOURCE_PASSWORD
-                valueFrom:
-                  secretKeyRef:
-                    name: postgres-test-postgresql
-                    key: postgres-password
+              valueFrom:
+                secretKeyRef:
+                  name: postgres-test-postgresql
+                  key: postgres-password
             - name: SPRING_DATASOURCE_USERNAME
               value: postgres
             - name: SPRING_DATASOURCE_URL
-              value: jdbc:postgresql://postgres-test-postgresql
+              value: jdbc:postgresql://postgres-test-postgresql/
