@@ -35,25 +35,14 @@ public class PersonService {
         List<Person> unitAdded = new ArrayList<Person>();
         for (Person unit : units) {
             try {
-                Person unitAdd = addToSurveyIndiv(idsurvey,unit);
-                unitAdded.add(unitAdd);
+                unit.setIdSurvey(idsurvey);
                 LOGGER.info("Unit : " + unit.toString());
             } catch (DuplicateException e){
                 e.getMessage();
             }
         }
-        return unitAdded;
+        return units;
 
-    }
-
-    public Person addToSurveyIndiv(Long idsurvey, Person unit){
-        // On va considérer ici qu'une personne participe à une enquete à la fois
-        if (unit.getIdSurvey() != null){
-            throw new DuplicateException("unit in survey", unit.getIdSurvey());
-        } else {
-            unit.setIdSurvey(idsurvey);
-            return unit;
-        }
     }
 
 }

@@ -73,6 +73,7 @@ public class SurveyController {
     public ResponseEntity addToSurvey(@RequestBody List<Person> units, @PathVariable String idsurvey){
         LOGGER.info("POST request to add unit to survey {}", idsurvey);
         Long idLongSurvey = Long.parseLong(idsurvey);
+        LOGGER.info("id Survey : ",idLongSurvey);
         try {
             surveyService.findById(idLongSurvey);
             LOGGER.info("Enquête trouvée");
@@ -81,9 +82,6 @@ public class SurveyController {
             return new ResponseEntity(HttpStatus.CREATED);
         } catch (NotFoundException e) {
             LOGGER.error("Error in request: campaign not found {}", idsurvey);
-            return new ResponseEntity(HttpStatus.BAD_REQUEST);
-        } catch (DuplicateException e){
-            LOGGER.error("Error in request: duplicate unit");
             return new ResponseEntity(HttpStatus.BAD_REQUEST);
         }
     }
