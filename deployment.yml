@@ -19,9 +19,9 @@ spec:
             - name: SPRING_DATASOURCE_PASSWORD
               valueFrom:
                 secretKeyRef:
-                  name: postgres-coleman-postgresql
+                  name: coleman-postgresql
                   key: postgres-password
             - name: SPRING_DATASOURCE_USERNAME
               value: postgres
             - name: SPRING_DATASOURCE_URL
-              value: jdbc:postgresql://postgres-coleman-postgresql/
+              value: jdbc:postgresql://coleman-postgresql/

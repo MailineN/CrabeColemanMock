@@ -90,7 +90,7 @@ public class SurveyController {
         }
     }
 
-    @PostMapping(value = "/survey/{idsurvey}/ready", consumes = "application/json")
+    @PostMapping(value = "/survey/{idsurvey}/ready")
     public ResponseEntity surveySetStateReady(@PathVariable String idsurvey){
         Long idLongSurvey = Long.parseLong(idsurvey);
         LOGGER.info("id Survey : ",idLongSurvey);
