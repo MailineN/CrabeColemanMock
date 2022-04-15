@@ -77,11 +77,36 @@ public class SurveyController {
         try {
             surveyService.findById(idLongSurvey);
             LOGGER.info("Enquête trouvée");
-            List<Person> list = personService.addToSurvey(idLongSurvey, units);
-            personRepository.saveAll(list);
-            return new ResponseEntity(HttpStatus.CREATED);
+            int respUpdate = personService.addToSurvey(idLongSurvey, units);
+            if (respUpdate ==1 ){
+                return new ResponseEntity(HttpStatus.ACCEPTED);
+            } else{
+                LOGGER.info("UpdateFailed");
+                return new ResponseEntity(HttpStatus.NOT_MODIFIED);
+            }
         } catch (NotFoundException e) {
-            LOGGER.error("Error in request: campaign not found {}", idsurvey);
+            LOGGER.error("Error in request: survey not found {}", idsurvey);
+            return new ResponseEntity(HttpStatus.BAD_REQUEST);
+        }
+    }
+
+    @PostMapping(value = "/survey/{idsurvey}/ready", consumes = "application/json")
+    public ResponseEntity surveySetStateReady(@PathVariable String idsurvey){
+        Long idLongSurvey = Long.parseLong(idsurvey);
+        LOGGER.info("id Survey : ",idLongSurvey);
+        try {
+            surveyService.findById(idLongSurvey);
+            LOGGER.info("Enquête trouvée");
+            // Update SurveyState
+            int respUdate = repository.updateSurveyStateById("ready",idLongSurvey);
+            if (respUdate ==1 ){
+                return new ResponseEntity(HttpStatus.ACCEPTED);
+            } else{
+                LOGGER.info("UpdateFailed");
+                return new ResponseEntity(HttpStatus.NOT_MODIFIED);
+            }
+
+        } catch (Exception e){
             return new ResponseEntity(HttpStatus.BAD_REQUEST);
         }
     }

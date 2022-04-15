@@ -15,7 +15,7 @@
 	<description>Demo project for Spring Boot</description>
 	<properties>
 		<java.version>17</java.version>
-		<start-class>com.example.coleman.CrabeMockApplication</start-class>
+		<start-class>com.example.coleman.Coleman</start-class>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -44,6 +44,11 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.springdoc</groupId>
+			<artifactId>springdoc-openapi-ui</artifactId>
+			<version>1.6.7</version>
 		</dependency>
 	</dependencies>
 

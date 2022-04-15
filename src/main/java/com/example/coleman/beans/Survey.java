@@ -14,13 +14,15 @@ public class Survey {
     private String name;
     private String dateDeb;
     private String dateEnd;
+    private String state_survey;
 
     public Survey(){}
 
-    public Survey(String name, String dateDeb, String dateEnd) {
+    public Survey(String name, String dateDeb, String dateEnd, String state_survey) {
         this.name = name;
         this.dateDeb = dateDeb;
         this.dateEnd = dateEnd;
+        this.state_survey = state_survey;
     }
 
     public String getName() {
@@ -51,6 +53,14 @@ public class Survey {
         return id;
     }
 
+    public String getState() {
+        return state_survey;
+    }
+
+    public void setState(String state) {
+        this.state_survey = state;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -71,7 +81,7 @@ public class Survey {
                 ", name='" + name + '\'' +
                 ", dateDeb='" + dateDeb + '\'' +
                 ", dateEnd='" + dateEnd + '\'' +
+                ", state='" + state_survey + '\'' +
                 '}';
     }
-
 }

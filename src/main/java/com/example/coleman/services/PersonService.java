@@ -26,22 +26,25 @@ public class PersonService {
 
     @Autowired
     PersonRepository personRepository;
-    
-    public List<Person> addToSurvey(Long idsurvey, List<Person> units) {
+
+    public int addToSurvey(Long idsurvey, List<Person> units) {
         // check and retrieval of the survey
         Survey survey = surveyRepository.findById(idsurvey)
                 .orElseThrow(() -> new NotFoundException("survey", idsurvey));
         LOGGER.info(survey.toString());
         List<Person> unitAdded = new ArrayList<Person>();
+        int flag = 1;
         for (Person unit : units) {
             try {
                 unit.setIdSurvey(idsurvey);
                 LOGGER.info("Unit : " + unit.toString());
+                personRepository.updatePersonSurveyById(idsurvey,unit.getId());
             } catch (DuplicateException e){
                 e.getMessage();
+                flag = 0;
             }
         }
-        return units;
+        return flag;
 
     }
 
