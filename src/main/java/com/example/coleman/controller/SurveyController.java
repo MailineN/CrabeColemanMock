@@ -72,8 +72,8 @@ public class SurveyController {
     @PostMapping(value = "/surveys/{idsurvey}/units", consumes = "application/json")
     public ResponseEntity addToSurvey(@RequestBody List<Person> units, @PathVariable String idsurvey){
         LOGGER.info("POST request to add unit to survey {}", idsurvey);
-        Long idLongSurvey = Long.valueOf( idsurvey );
-        LOGGER.info("idLongSurvey : ",idLongSurvey);
+        Long idLongSurvey = Long.parseLong(idsurvey);
+        LOGGER.info("idLongSurvey : ", idLongSurvey.toString());
         try {
             surveyService.findById(idLongSurvey);
             LOGGER.info("Enquête trouvée");
