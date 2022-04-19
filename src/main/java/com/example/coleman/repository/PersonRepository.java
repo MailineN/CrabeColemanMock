@@ -11,6 +11,6 @@ public interface PersonRepository extends JpaRepository<Person,Long> {
     List<Person> findByIdSurvey(Long idSurvey);
     @Transactional
     @Modifying
-    @Query("update Person p set p.idSurvey = ?1 where p.id = ?2")
+    @Query("update Person p set p.id_survey = ?1 where p.id = ?2")
     int updatePersonSurveyById(Long idSurvey, Long idPerson);
 }
