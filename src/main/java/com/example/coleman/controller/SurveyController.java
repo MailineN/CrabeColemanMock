@@ -66,7 +66,7 @@ public class SurveyController {
     @GetMapping("/surveys/{idsurvey}/units")
     public ResponseEntity<List<Person>> allUnits(@PathVariable String idsurvey){
         // est ce que c'est vraiment utile ?
-        return ResponseEntity.ok(personRepository.findByIdSurvey(Long.parseLong(idsurvey)));
+        return ResponseEntity.ok(personRepository.findBySurveyId(Long.parseLong(idsurvey)));
     }
 
     @PostMapping(value = "/surveys/{idsurvey}/units", consumes = "application/json")

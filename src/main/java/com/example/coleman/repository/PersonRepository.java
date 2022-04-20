@@ -8,9 +8,9 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 
 public interface PersonRepository extends JpaRepository<Person,Long> {
-    List<Person> findByIdSurvey(Long idSurvey);
+    List<Person> findBySurveyId(Long idSurvey);
     @Transactional
     @Modifying
-    @Query("update Person p set p.id_survey = ?1 where p.id = ?2")
+    @Query("update Person p set p.surveyId = ?1 where p.id = ?2")
     int updatePersonSurveyById(Long idSurvey, Long idPerson);
 }

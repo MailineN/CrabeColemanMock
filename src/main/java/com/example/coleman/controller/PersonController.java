@@ -48,8 +48,8 @@ public class PersonController {
     @PatchMapping(value="/persons/{id}", consumes = "application/json")
     ResponseEntity updatePerson(@RequestBody Person newPerson, @PathVariable Long id){
         Person toUpdatePerson = repository.getById(id);
-        toUpdatePerson.setId_survey(newPerson.getId_survey());
-        LOGGER.info("Update survey ID "+ newPerson.getId_survey());
+        toUpdatePerson.setsurveyId(newPerson.getsurveyId());
+        LOGGER.info("Update survey ID "+ newPerson.getsurveyId());
         repository.save(toUpdatePerson);
         return new ResponseEntity(HttpStatus.OK);
     }
