@@ -34,7 +34,6 @@ public class PersonService {
         LOGGER.info(survey.toString());
         List<Person> unitAdded = new ArrayList<Person>();
         int flag = 1;
-        LOGGER.info(units.toString());
         for (Person unit : units) {
             try {
                 unit.setsurveyId(idsurvey);

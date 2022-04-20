@@ -73,7 +73,7 @@ public class SurveyController {
     public ResponseEntity addToSurvey(@RequestBody List<Person> units, @PathVariable String idsurvey){
         LOGGER.info("POST request to add unit to survey {}", idsurvey);
         Long idLongSurvey = Long.parseLong(idsurvey);
-        LOGGER.info("idLongSurvey : ", idLongSurvey.toString());
+        LOGGER.info("Unit : ", units.toString());
         try {
             surveyService.findById(idLongSurvey);
             LOGGER.info("Enquête trouvée");
