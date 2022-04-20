@@ -37,7 +37,7 @@ public class PersonService {
         for (Person unit : units) {
             try {
                 unit.setid_survey(idsurvey);
-                LOGGER.info("Unit : " + unit.toString());
+                LOGGER.info("Unit ID: " + unit.getId());
                 personRepository.updatePersonSurveyById(idsurvey,unit.getId());
             } catch (DuplicateException e){
                 e.getMessage();
