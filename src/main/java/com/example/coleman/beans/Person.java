@@ -46,11 +46,11 @@ public class Person {
         this.prenom = prenom;
     }
 
-    public Long getid_survey() {
+    public Long getId_survey() {
         return id_survey;
     }
 
-    public void setid_survey(Long id_survey) {
+    public void setId_survey(Long id_survey) {
         this.id_survey = id_survey;
     }
 
